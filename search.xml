@@ -18,4 +18,41 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>安装hexo作为个人博客站点</title>
+    <url>/2020/04/02/hexo-install/</url>
+    <content><![CDATA[<p>大家好，如果你看到这篇文章，那么我们算是同道中人~。此博客就是我使用hexo，基于github搭建的个人博客站点。<br>这篇文章就是我使用hexo搭建起来个人博客站点后，写的第一篇文章。</p>
+<p>hexo中文官网：<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">https://hexo.io/zh-cn/</a><br>本文参考博客：<a href="https://blog.csdn.net/sinat_37781304/article/details/82729029" target="_blank" rel="noopener">https://blog.csdn.net/sinat_37781304/article/details/82729029</a></p>
+<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>安装hexo<br>Github创建个人仓库<br>将hexo部署到github<br>设置个人域名（可选）</p>
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><h3 id="安装hexo-1"><a href="#安装hexo-1" class="headerlink" title="安装hexo"></a>安装hexo</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看hexo版本"><a href="#查看hexo版本" class="headerlink" title="查看hexo版本"></a>查看hexo版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<h3 id="初始化博客文件夹"><a href="#初始化博客文件夹" class="headerlink" title="初始化博客文件夹"></a>初始化博客文件夹</h3><p>进入想要创建博客文件夹的目录。本文使用的是在D盘下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init myblog</span><br></pre></td></tr></table></figure>
+<p>初始化过后 D盘下会出现myblog的文件夹<br><img src="/.com//1.png" alt><br><img src="/.com//2.png" alt></p>
+<h3 id="进入myblog文件夹"><a href="#进入myblog文件夹" class="headerlink" title="进入myblog文件夹"></a>进入myblog文件夹</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动hexo-server"><a href="#启动hexo-server" class="headerlink" title="启动hexo server"></a>启动hexo server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p>服务启动后，访问本地的4000端口，就可以看到hexo最初的界面<br><img src="/.com//3.png" alt></p>
+<h2 id="Github创建个人仓库"><a href="#Github创建个人仓库" class="headerlink" title="Github创建个人仓库"></a>Github创建个人仓库</h2><h3 id="点击-New-repository创建新仓库"><a href="#点击-New-repository创建新仓库" class="headerlink" title="点击 New repository创建新仓库"></a>点击 New repository创建新仓库</h3><p>创建一个和你用户名相同的仓库，后面加.github.io，只有这样，将来要部署到GitHub page的时候，才会被识别，也就是xxxx.github.io，其中xxx就是你注册GitHub的用户名。我这里是已经建过了。<br><img src="/.com//4.png" alt><br><img src="/.com//5.png" alt></p>
+<h3 id="将hexo部署到github"><a href="#将hexo部署到github" class="headerlink" title="将hexo部署到github"></a>将hexo部署到github</h3><p>这一步，我们就可以将hexo和GitHub关联起来，也就是将hexo生成的文章部署到GitHub上，打开站点配置文件 _config.yml，翻到最后，修改为<br>deploy:<br>  type: git<br>  repo: <a href="https://github.com/mymeatball/mymeatball.github.io.git" target="_blank" rel="noopener">https://github.com/mymeatball/mymeatball.github.io.git</a><br>  branch: master</p>
+<p>这里的repo请使用刚创建的github仓库的地址</p>
+<p>此时需要安装depoly-git，此命令用于将hexo部署到github。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>其中 hexo clean清除了你之前生成的东西，也可以不加。<br>hexo generate 顾名思义，生成静态文章，可以用 hexo g缩写<br>hexo deploy 部署文章，可以用hexo d缩写</p>
+<p>deploy过后，就可以在github的仓库中看到刚上传的内容<br><img src="/.com//6.png" alt></p>
+<p>此时，使用镜像仓库名， 也就是域名mymeatball.github.io就可以访问我们的hexo 博客页面。内容和本地启动时看到的内容一样，因为我们没有做任何修改。<br><img src="/.com//7.png" alt></p>
+<h2 id="设置个人域名（可选）"><a href="#设置个人域名（可选）" class="headerlink" title="设置个人域名（可选）"></a>设置个人域名（可选）</h2><p>先在我的网站域名是<a href="https://mymeatball.github.io/，我觉得不够个性化，所以我想要修改一个属于自己的域名。" target="_blank" rel="noopener">https://mymeatball.github.io/，我觉得不够个性化，所以我想要修改一个属于自己的域名。</a><br>（需要先准备好自己的域名）</p>
+<p>在阿里云的域名解析设置中添加记录<br><img src="/.com//8.png" alt></p>
+<p>将blog.minacat.com解析到mymeatball.github.com</p>
+<p>再在github仓库的setting页面中设置 自定义域，输入自己的域名。如blog,minacat.com<br><img src="/.com//9.png" alt><br><img src="/.com//10.png" alt></p>
+<p>至此，自定义域名就完成啦。可以通过配置的bloh.minacat.com去访问github上创建的hexo博客</p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
 </search>
